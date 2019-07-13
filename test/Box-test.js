@@ -1,7 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
 
+const spies = require('chai-spies');
+chai.use(spies);
+
 const Box = require('../src/Box');
+
+global.localStorage = {};
+chai.spy.on(localStorage, ['setItem', 'getItem']  );
+
 
 describe('Box', function() {
   it('should return true', function() {
@@ -39,6 +46,17 @@ describe('Box', function() {
       var box = new Box(30, 30);
       box.incrementSize(100, 'height');
       expect(box.height).to.equal(130);
+    });
+  });
+  
+  describe('saveDetails', function() {
+    it('should save details to localStorage', function() {
+      var box = new Box(100, 100);
+      box.saveDetails();
+      expect(localStorage.setItem).to.have.been.called(1); 
+      expect(localStorage.setItem).to.have.been.called.with('box',
+        { width: 100, height: 100 }
+      );
     });
   });
 });
