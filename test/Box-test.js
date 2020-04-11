@@ -12,10 +12,13 @@ global.localStorage = {}
 chai.spy.on(localStorage, ["setItem", "getItem"]);
 chai.spy.on(domUpdates, "updateSize", () => true);
 
+console.log(global.localStorage)
+
 describe("Box", function() {
 
   afterEach(() => {
     domUpdates.updateSize.__spy.calls = []
+    global.localStorage.setItem.__spy.calls = []
   });
 
   it("should return true", function() {
@@ -63,10 +66,7 @@ describe("Box", function() {
       var box = new Box(100, 100);
       box.saveDetails();
       expect(localStorage.setItem).to.have.been.called(1);
-      expect(localStorage.setItem).to.have.been.called.with("box", {
-        width: 100,
-        height: 100
-      });
+      expect(localStorage.setItem).to.have.been.called.with('box', '{"height":100,"width":100}');
     });
   });
 });
