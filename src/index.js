@@ -4,8 +4,9 @@ $(document).ready(function() {
   $("button").on("click", function(e) {
     e.preventDefault();
 
-    var amount = $("input").val();
+    var amount = parseInt($("input").val());
     var dimension = $("#select option:selected").val();
+    $("input").val('');
     box.incrementSize(amount, dimension);
   });
   

@@ -14,14 +14,17 @@ class Box {
 
   incrementSize(amount, dimension) {
     this[dimension] += amount;
-    domUpdates.updateSize(amount, dimension);
+    domUpdates.updateSize(this[dimension], dimension);
+    this.saveDetails();
   }
 
   saveDetails() {
-    localStorage.setItem("box", {
+    const dimensions = {
       height: this.height,
       width: this.width
-    });
+    }
+
+    localStorage.setItem("box", JSON.stringify(dimensions));
   }
 }
 
