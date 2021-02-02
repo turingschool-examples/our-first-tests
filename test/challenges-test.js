@@ -3,9 +3,9 @@ const expect = chai.expect;
 const {
   getKittenName,
   getKittenDetail,
-  addDogProperty,
+  addProperty,
   calculateTotalBudget
-} = require('../src/challenges')
+} = require('../src/challenges');
 
 describe('challenges', () => {
   describe('kittens', () => {
@@ -26,28 +26,28 @@ describe('challenges', () => {
     });
   });
 
-  describe('dog', () => {
+  describe('addProperty', () => {
     it('should add a key value pair', () => {
       const dog = {
         name: 'Boris',
         age: 3,
         breed: 'Pug'
-      }
+      };
 
-      addDogProperty(dog, 'temperament', 'jolly')
+      addProperty(dog, 'temperament', 'jolly');
 
       expect(dog.temperament).to.equal('jolly');
     });
   });
 
-  describe('budgets', () => {
+  describe('calculateTotalBudget', () => {
     it('should be able to add up a total budget', () => {
       const budget1 = {
         groceries: 30,
         rent: 1500,
         fun: 15,
         doggo: 50
-      }
+      };
 
       expect(calculateTotalBudget(budget1)).to.equal(1595);
     });
@@ -58,7 +58,7 @@ describe('challenges', () => {
         rent: 100,
         fun: 'five',
         doggo: 50
-      }
+      };
 
       expect(calculateTotalBudget(budget2)).to.equal(175);
     });
